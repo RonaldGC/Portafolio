@@ -13,20 +13,11 @@
     --h2: 550 2rem/3.25rem var(--ff);   
     --h3: 500 1.5rem/2.75rem var(--ff); 
     --h5: 500 1.125rem/1.25rem var(--ff);
-    --links: 0.875rem/1.25rem var(--ff);  
+    --links: 0.65rem/0.25rem var(--ff);  
     --p: 400 1rem/1.25rem var(--ff);   
     --transition: 0.3s ease-in-out;
 }
-@media (max-width: 768px) {
-    :root {
-        --h1: 600 2.5rem/3.5rem var(--ff);
-        --h2: 550 1.75rem/2.75rem var(--ff);
-        --h3: 500 1.25rem/2rem var(--ff);
-        --h5: 500 1rem/1.25rem var(--ff);
-        --links: 400 0.75rem/1rem var(--ff);
-        --p: 400 1rem/1.25rem var(--ff);
-    }
-}
+
 
 h1, h2, h3, p, .links, .p2 {
     margin: 0px;
@@ -138,16 +129,7 @@ html {
     width: 52px;
 
 }
-.menu-contacto{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    list-style: none;
-    margin: 0;
-    gap: 12px ;
-}
+
 .tecnologias{
     display: flex;
     flex-direction: row;
@@ -184,9 +166,6 @@ html {
     }
 }
 
-
-
-
 /* Carta para presentar proyectos */
 .carta-proyecto{
     background-color: var(--colorresaltar-mc);
@@ -215,7 +194,20 @@ html {
        width: 326px; 
     }
 }
-/* Final Carta*/
+
+.iconbutton{
+    width: 48px;
+    height: 48px;
+    border-radius: 100%;
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    right: 3%;
+    bottom: 3%;
+    cursor: pointer;
+  }
 
 body{
     display: flex;
@@ -244,42 +236,52 @@ header{
     top: 0;
     position: sticky;
     z-index: 1;
-    background-color: var(--colorresaltar-mc);
     flex-wrap: wrap;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 60px;
-
-    animation: difuminador-header linear both;
-    animation-timeline: scroll(root);
-    animation-range: 0 100vh;
+    margin: 0 auto;
 }
-@keyframes difuminador-header {
+@keyframes cambio-de-forma {
     0%{  
+        display: flex;
+        justify-content: center;
         background-color: var(--colorresaltar-mc);
+        width:100vw ;
+        height: 60;
         opacity: 100%;
         backdrop-filter: blur(10px);
     } 
     100%{
+        display: flex;
+        justify-content: center;
         backdrop-filter: blur(100px);
+        border-radius: 12px;
         opacity: 98%;
+        width:360px ;
+        
     }  
 }
 nav{
-    display: flex;
-    flex-direction: row;
+    background-color: var(--colorresaltar-mc);
     align-items: center;
-    justify-content: space-around;
-    height: 60px;
+    justify-content: center;
+    height: 40px;
     width: 100%;
+    gap:24px;
+    animation: cambio-de-forma  linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 100vh;
+    position: relative;
 }
 
-
-
-
+nav div{
+    display: inline;
+    gap: 32px;
+}
 a{
-    text-decoration: none
+    text-decoration: none;
 }
 
 .redireccion-menu{
@@ -288,20 +290,28 @@ a{
 }
 
 .nav-link{
-    font-size: var(--links);
+    font-size: 12px;
     color: var(--colorprimario-mc);
     text-decoration: none;
-    padding: 4px;
+    
+}
+header .nav-link{
+
+    border: 1px solid transparent;
+    padding: 8px;
+    gap: 8px;
+}
+header .nav-link:hover{
+    border: 1px solid var(--colorprimario-mc);
+    padding: 8px;
 }
 nav .links{
     border: 1px solid transparent;
     border-radius: 8px;
-    padding: 4px;
 }
+
 .nav-link:hover{
-    border: 1px solid var(--colorprimario-mc);
     border-radius: 8px;
-    padding: 4px;
     transition: var(--transition);
 }
 
@@ -310,47 +320,96 @@ nav .links{
     text-decoration: none;
 
 }
-/* Estilos generales del menú */
-.contacto .menu-contacto {
-    width: 300px;
+
+.menu-contacto{
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    width: 240px;
+    margin: 0;
+    gap: 8px;
     padding: 0;
+    
+}
+#contact-menu.show {
+    background-color: var(--colorresaltar-mc);
+    border: solid 1px var(--colorprimario-mc);
+    flex-direction: row;
+    position: absolute;
+    top: 50;
+    right: 13%;
+    padding: 10px;
+    border-radius: 8px;
+    width: 240px;
+    animation: fadeInAnimation ease-in-out 0.3s forwards;
 }
 
+.hidden{
+    opacity: 0;
+    visibility: hidden;
+    animation: fadeInAnimation ease-in-out 0.3s forwards; 
+}
+.contacto-header .menu-contacto-header {
+    position: absolute;
+    top: 50;
+    right: 13%;
+    display: none; 
+}
+.menu-contacto-header.show .nav-item{
+    animation: fadeIntAnimation ease-in-out 0.3s forwards; 
+}
+.menu-contacto-header .nav-item{
+    animation: fadeOutAnimation ease-in-out 0.2s forwards; 
+}
 .contact-icon {
+    position: relative;
     display: none;
     background: none;
     border: none;
     cursor: pointer;
 }
 
-@media (max-width: 830px) {
-    /* Ocultar el menú de contacto y mostrar el ícono en móviles */
-    .contacto-header .menu-contacto-header {
-        display: none;
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+        visibility: hidden;
     }
+    100% {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@keyframes fadeOutAnimation {
+    0% {
+        opacity: 1;
+        visibility: visible;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@media (max-width: 1440px) {
+    /* Ocultar el menú de contacto y mostrar el ícono en móviles */
 
     .contact-icon {
         display: inline;
+        position: relative;
         color: var(--colorprimario-mc);
     }
-
-    /* Estilo del menú desplegable en móviles */
-    #contact-menu.show {
-        background-color: var(--colorresaltar-mc);
-        border: solid 1px var(--colorprimario-mc);
-        display: flex;
-        flex-direction: row;
-        gap: 8px;
-        position: absolute;
-        top: 50px;
-        right: 10px;
-        padding: 10px;
-        border-radius: 8px;
-        width: 300px;
+}
+@media (max-width: 900px){
+    #contact-menu.show{
+        top:50px;
     }
 }
+
+
 
 
 /* Hero */
@@ -366,6 +425,7 @@ nav .links{
     display: flex;
     flex-direction: column;
     align-items: center;
+   
 }
 .texto-hero:nth-child(1){
     color: var(--colorsecundario-mc);
@@ -381,7 +441,9 @@ nav .links{
     color: var(--colorsecundario-mc);
     font-weight: 500;
     margin-top:  50px; ;
-    width: 55vw;
+    text-wrap:pretty;
+    width: 60vw;
+    
 }
 @media  (max-width: 570px) {
     /* Hero Section */
@@ -547,3 +609,4 @@ footer{
     align-items: center;
     color: var(--colorprimario-mc);
 }
+
