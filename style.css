@@ -238,26 +238,51 @@ section{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     position: fixed;
-    top: 180px;
-    right: 32%;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background: var(--colorprimario-mc);
     box-shadow: 1px 0.5px 5px var(--colorresaltar-mc);
-    width: 380px;
-    height: 320px;
-    border-color: 1px solid var(--colorprimario-mc);
+    width: 90%; 
+    max-width: 380px;
+    height: auto;
+    border: 1px solid var(--colorprimario-mc);
     border-radius: 8px;
 }
 
 .carta-formulario-contacto.show {
-    opacity: 1;                   /* Muestra el formulario */
-    transform: translateY(0);     /* Devuelve el formulario a su posición original */
+    opacity: 1;
+    transform: translate(-50%, -48%);
 }
 
 .carta-formulario-contacto.hidden {
-    opacity: 0;                   /* Oculta el formulario */
-    transform: translateY(-50px); /* Desplazamiento fuera de la vista */
+    opacity: 0;
+    transform: translate(-50%, -50%);
 }
+
+@media (max-width: 768px) {
+    .carta-formulario-contacto {
+        width: 95%;
+    }
+    .carta-formulario-contacto.show {
+        opacity: 1;
+        transform: translate(-50%, -48%);
+    }
+}
+
+@media (max-width: 480px) {
+    .carta-formulario-contacto {
+        width: 100%;
+        
+    }
+    .carta-formulario-contacto.show {
+        opacity: 1;
+        transform: translate(-50%, -48%);
+    }
+}
+
 
 .arriba-carta{
     display: flex;
@@ -273,8 +298,8 @@ section{
 }
 .arriba-carta .icono{
     position: absolute;
-    top: 2%;
-    right: 8%;
+    top: 2.5%;
+    right: 4%;
 }
 .informacion-formulario{
     
@@ -320,6 +345,7 @@ form{
     width: 324px;
     height: 250px;
     margin-top: 12px;
+    padding-left:11px ;
 }
 form input{
     width: 324px;
@@ -367,7 +393,7 @@ form button{
 }
 /* Header */
 header{
-    top: 0;
+    top: 0px;
     position: sticky;
     z-index: 1;
     flex-wrap: wrap;
@@ -378,6 +404,7 @@ header{
 }
 @keyframes cambio-de-forma {
     0%{  
+        
         display: flex;
         justify-content: center;
         background-color: var(--colorresaltar-mc);
@@ -387,6 +414,7 @@ header{
         backdrop-filter: blur(10px);
     } 
     100%{
+        top: 1px;
         display: flex;
         justify-content: center;
         backdrop-filter: blur(100px);
@@ -456,6 +484,7 @@ nav .links{
 
 .menu-contacto{
     display: flex;
+    
     flex-wrap: wrap;
     flex-direction: row;
     align-items: center;
@@ -473,11 +502,24 @@ nav .links{
     flex-direction: row;
     position: absolute;
     top: 50px;
-    right: 13%;
+    right: 12%;
     padding: 10px;
     border-radius: 8px;
     width: 240px;
     animation: fadeInAnimation ease-in-out 0.3s forwards;
+}
+
+@media (max-width: 1024px) {
+    #contact-menu.show{
+        right: 12%;
+    }
+}
+@media (max-width: 600px) {
+    #contact-menu.show{
+        right: 18%;
+        top: 192px;
+    }
+
 }
 
 .hidden {
@@ -549,9 +591,6 @@ nav .links{
         top:50px;
     }
 }
-
-
-
 
 /* Hero */
 .hero{
@@ -649,7 +688,7 @@ nav .links{
     margin: 0 auto;
     gap:12px
 }
-/* Media query para pantallas medianas */
+
 @media (max-width: 1024px) {
     .seccion-cartas-proyectos {
         grid-template-columns: repeat(2, 1fr); /* Dos columnas */
@@ -657,7 +696,7 @@ nav .links{
     }
 }
 
-/* Media query para pantallas pequeñas */
+
 @media (max-width: 600px) {
     .seccion-cartas-proyectos {
         grid-template-columns: 1fr; /* Una columna */
