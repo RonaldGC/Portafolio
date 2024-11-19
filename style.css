@@ -200,7 +200,7 @@ html {
     width: 48px;
     height: 48px;
     border-radius: 100%;
-   
+   z-index: 15;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -232,6 +232,11 @@ section{
     }
 }
 
+.blur {
+    filter: blur(2px); 
+    transition: filter 0.3s ease-in-out; 
+}
+
 /* Formulario de contacto */ 
 .carta-formulario-contacto {
     z-index: 10;
@@ -240,26 +245,28 @@ section{
     align-items: center;
     justify-content: center;
     position: fixed;
-    top: 60%;
+    top: 40%;
     left: 50%;
-    transform: translate(-50%, -50%);
     background: var(--colorprimario-mc);
     box-shadow: 1px 0.5px 5px var(--colorresaltar-mc);
     width: 90%; 
     max-width: 380px;
     height: auto;
+    max-height: 380px;
     border: 1px solid var(--colorprimario-mc);
     border-radius: 8px;
 }
 
 .carta-formulario-contacto.show {
     opacity: 1;
-    transform: translate(-50%, -48%);
+    transform: translate(-50%, -8%);
+    animation: fadeInAnimation ease-in-out 0.2s forwards; 
 }
 
 .carta-formulario-contacto.hidden {
     opacity: 0;
     transform: translate(-50%, -50%);
+    animation: fadeOutAnimation ease-in-out 0.3s forwards; 
 }
 
 @media (max-width: 768px) {
@@ -268,7 +275,7 @@ section{
     }
     .carta-formulario-contacto.show {
         opacity: 1;
-        transform: translate(-50%, -48%);
+        transform: translate(-50%, -12%);
     }
 }
 
@@ -279,11 +286,9 @@ section{
     }
     .carta-formulario-contacto.show {
         opacity: 1;
-        transform: translate(-50%, -48%);
+        transform: translate(-50%, -12%);
     }
 }
-
-
 .arriba-carta{
     display: flex;
     align-items: center;
@@ -298,7 +303,7 @@ section{
 }
 .arriba-carta .icono{
     position: absolute;
-    top: 2.5%;
+    top: -4.5%;
     right: 4%;
 }
 .informacion-formulario{
