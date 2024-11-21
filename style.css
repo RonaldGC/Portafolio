@@ -16,11 +16,17 @@
     --links: 0.65rem/0.25rem var(--ff);  
     --p: 400 1rem/1.25rem var(--ff);   
     --transition: 0.3s ease-in-out;
+
+    --card-height: 40vw;
+	--card-margin: 4vw;
+	--card-top-offset: 1em;
+	--outline-width: 0px;
 }
 
 
-h1, h2, h3, p, .links, .p2 {
+h1, h2, h3, p, .links, .p2, figure {
     margin: 0px;
+    padding: 0px;
 }
 
 h1 {font: var(--h1);} 
@@ -57,10 +63,12 @@ html {
 .icons-fondo-oscuro{
     fill:var(--colorprimario-mc);
 }
-.icon-tecnologias{
-    min-height: 36px;
-    min-width: 36px;
-    
+
+@media (max-width: 480px) {
+    .tecnologias svg{
+        height: 32px;
+        width: 32px;
+    }
 }
 
 .boton-mail-v1{
@@ -77,6 +85,8 @@ html {
     justify-content: center;
     gap: 9px;
     padding: 0 24px;
+    cursor: pointer;
+
     .letra-boton{
     color:var(--colorresaltar-mc);
     font:var(--links);
@@ -99,6 +109,8 @@ html {
     justify-content: center;
     gap: 9px;
     padding: 0 24px;
+    cursor: pointer;
+
     .letra-boton{
         color:var(--colorprimario-mc);
         font:var(--links);
@@ -116,7 +128,7 @@ html {
     justify-content: center;
     height: 34px;
     width: 52px;
-
+    cursor: pointer;
 }
 .boton-claro{
     align-content: center;
@@ -128,7 +140,7 @@ html {
     justify-content: center;
     height: 34px;
     width: 52px;
-
+    cursor: pointer;
 }
 
 .tecnologias{
@@ -164,35 +176,6 @@ html {
 
     100%{
         transform:translateY(0px)
-    }
-}
-
-/* Carta para presentar proyectos */
-.carta-proyecto{
-    background-color: var(--colorresaltar-mc);
-    border: solid 1px var(--colorresaltar-mc);
-    box-shadow: 0 2px 6px var(--colorsecundario-mc);
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    width: 320px;
-    height: 280px;
-}
-.img-proyecto{
-    padding-top: 12px;
-}
-.texto-proyecto{
-    color: var(--colorprimario-mc);
-    padding-left:12px ;
-    margin-bottom: 2px;
-    margin-top: 12px;
-}
-.descripcion-proyecto{
-    font-weight: 200;
-}
-@media (max-width: 830px){
-    .carta-proyecto{
-       width: 326px; 
     }
 }
 
@@ -486,7 +469,6 @@ nav .links{
     text-decoration: none;
 
 }
-
 .menu-contacto{
     display: flex;
     
@@ -583,8 +565,6 @@ nav .links{
 }
 
 @media (max-width: 1440px) {
-    /* Ocultar el menú de contacto y mostrar el ícono en móviles */
-
     .contact-icon {
         display: inline;
         position: relative;
@@ -626,16 +606,17 @@ nav .links{
     color: var(--colorsecundario-mc);
     font-weight: 500;
     margin-top:  50px; ;
-    text-wrap:pretty;
+    text-wrap:initial ;
     width: 60vw;
     
 }
+
 @media  (max-width: 570px) {
     /* Hero Section */
     .hero {
         gap: 40px;
         padding: 16px;
-        height: 100vh;
+        height: 65vh;
     }
     .texto-hero{
         display: flex;
@@ -670,42 +651,138 @@ nav .links{
         gap: 16px;
     }
 }
-
 /* Proyectos */
 .proyectos{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom:24px ;
+    padding-bottom:124px ;
 }
-.texto-proyectos{
-    width: 70vw;
-}
-
 .seccion-cartas-proyectos{ 
-    
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     justify-items: center;
     padding-top: 60px;
     padding-bottom:60px ;
     margin: 0 auto;
-    gap:12px
+    gap:18px
+}
+.carta-proyecto{
+    background-color: var(--colorresaltar-mc);
+    border: solid 1px var(--colorprimario-mc);
+    box-shadow: 0 1px 5px var(--colorresaltar-mc);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    width: 70vw;
+    height: 285px;
+}
+.img-proyecto{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.informacion-proyecto{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 16px;
+}
+.texto-proyecto{
+    color: var(--colorprimario-mc);
+    padding-left:12px ;
+    margin-bottom: 2px;
+    margin-top: 12px;
+}
+.descripcion-proyecto{
+    font-weight: 200;
+}
+.informacion-proyecto a{
+    font: var(--links);
+    font-weight: 100;
 }
 
-@media (max-width: 1024px) {
-    .seccion-cartas-proyectos {
-        grid-template-columns: repeat(2, 1fr); /* Dos columnas */
-        gap: 8px;
+.card {
+	position: sticky;
+	top: 64px;
+	padding-top: calc(var(--index) * var(--card-top-offset));
+
+    --index0: calc(var(--index) - 1); 
+	--reverse-index: calc(var(--numcards) - var(--index0)); 
+	--reverse-index0: calc(var(--reverse-index) - 1); 
+}
+#cards {
+	padding-bottom: calc(var(--numcards) * var(--card-top-offset));
+	margin-bottom: var(--card-margin);
+
+    list-style: none;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: repeat(var(--numcards), 45vh);
+	gap: var(--card-margin);
+    padding: 0;
+
+    --numcards: 3;
+	view-timeline-name: --cards-element-scrolls-in-body;
+
+}
+#card_1 {
+	--index: 1;
+}
+#card_2 {
+	--index: 2;
+}
+#card_3 {
+	--index: 3;
+}
+#card_4 {
+	--index: 4;
+}
+@keyframes scale {
+	to {
+		transform:
+			scale(calc(1.1 - calc(0.1 * var(--reverse-index))));
+	}
+}
+.card__content {
+	--start-range: calc(var(--index0) / var(--numcards) * 100%);
+	--end-range: calc((var(--index)) / var(--numcards) * 100%);
+
+	animation: linear scale forwards;
+	animation-timeline: --cards-element-scrolls-in-body;
+	animation-range: exit-crossing var(--start-range) exit-crossing var(--end-range);
+}
+
+@media (max-width: 830px){
+    .carta-proyecto{
+        width: 92vw;
+    }
+    .informacion-proyecto h3{
+        font-size:24px;
+        line-height:20px;
+    }
+    .informacion-proyecto p{
+        font-size:14px;
+    }
+
+}
+@media  (max-width: 570px) {
+    #cards{
+        grid-template-rows: repeat(var(--numcards), 30vh);
+    }
+    :root{
+        --card-margin: 28vw;
     }
 }
-
-
-@media (max-width: 600px) {
-    .seccion-cartas-proyectos {
-        grid-template-columns: 1fr; /* Una columna */
-        gap: 8px;
+@media  (max-width: 375px) {
+    #cards{
+        grid-template-rows: repeat(var(--numcards), var(--card-height));
+    }
+    :root{
+        --card-margin: 24vh;
     }
 }
 
